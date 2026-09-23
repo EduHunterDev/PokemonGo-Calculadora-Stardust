@@ -1,0 +1,1 @@
+# PokemonGo-Calculadora-Stardust

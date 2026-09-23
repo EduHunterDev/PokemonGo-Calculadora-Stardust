@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Stardust | EduHunterPlay</title>
+<style>
+ :root{--bg:#faf8ff;--card:#ffffff;--card2:#f1edfb;--text:#28243d;--muted:#746e86;--accent:#8b5cf6;--accent-dark:#6d3fc4;--orange:#ed795f;--red:#d94f70;--border:#e5def2;--navy:#292044}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+.sitebar{background:var(--navy);color:#fff;border-bottom:4px solid var(--accent);box-shadow:0 4px 14px #29204424}
+.sitebar-inner{max-width:1100px;margin:auto;padding:15px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{font-size:20px;font-weight:900;letter-spacing:.3px}.brand span{color:#fff}.site-link{color:#fff;text-decoration:none;font-size:13px;font-weight:700;border:1px solid #ffffff55;border-radius:7px;padding:8px 12px}.site-link:hover{background:#ffffff18}
+.container{max-width:1100px;margin:auto;padding:32px 24px 26px}
+h1{margin:0 0 6px;font-size:32px;color:var(--navy)}.sub{color:var(--muted);margin-bottom:24px}
+.hero{background:linear-gradient(110deg,var(--accent-dark),#874acb 55%,#b84f9d);border-radius:12px;padding:24px 26px;margin-bottom:22px;color:#fff;box-shadow:0 8px 20px #6d3fc426}.hero h1{color:#fff}.hero .sub{color:#f7ebff;margin-bottom:0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;box-shadow:0 3px 12px #2920440d}
+.grid .card{border-top:4px solid var(--accent)}.grid .card:nth-child(2){border-top-color:var(--orange)}.grid .card:nth-child(3){border-top-color:#e04747}
+.stat{font-size:28px;font-weight:700;margin-top:7px;color:var(--navy)}.label{color:var(--muted);font-size:14px}
+.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+button{border:0;border-radius:8px;padding:11px 15px;font-weight:700;cursor:pointer;background:var(--orange);color:#fff;box-shadow:0 3px 8px #ed795f40}button:hover{filter:brightness(.95);transform:translateY(-1px)}
+button.secondary{background:var(--card2);color:var(--text);border:1px solid var(--border);box-shadow:none}button.danger{background:var(--red);color:white;box-shadow:none}
+label.switch{display:flex;align-items:center;gap:8px;background:var(--card);padding:10px 13px;border:1px solid var(--border);border-radius:8px}
+input[type=checkbox]{width:18px;height:18px}
+.tablewrap{overflow:auto;border:1px solid var(--border);border-radius:12px;box-shadow:0 3px 12px #2920440d}
+table{width:100%;border-collapse:collapse;min-width:760px;background:var(--card)}
+th,td{padding:11px;border-bottom:1px solid var(--border);text-align:left}th{color:var(--muted);font-size:13px}
+input,select{background:#fff;color:var(--text);border:1px solid #d5c9e8;border-radius:7px;padding:8px;width:100%}
+.num{width:100px}.pokemon{min-width:180px}
+thead{background:var(--navy);color:#fff}thead th{color:#f2eaff}tfoot td{font-weight:700;background:var(--card2)}
+.note{color:var(--muted);font-size:13px;margin-top:14px;line-height:1.5}
+.footer{background:var(--navy);color:#fff;margin-top:18px}.footer-inner{max-width:1100px;margin:auto;padding:26px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}.footer-title{font-weight:800;font-size:18px;margin-bottom:5px}.footer-copy{color:#b8c9d4;font-size:13px}.footer a{display:inline-block;background:var(--orange);color:#fff;text-decoration:none;font-weight:700;border-radius:8px;padding:11px 15px;white-space:nowrap}.footer a:hover{filter:brightness(.95)}
+@media(max-width:750px){.grid{grid-template-columns:1fr}.container{padding:14px}h1{font-size:24px}}
+@media(max-width:600px){.sitebar-inner,.footer-inner{padding-left:14px;padding-right:14px}.footer-inner{align-items:flex-start;flex-direction:column}.site-link{font-size:12px}.hero{padding:20px}}
+</style>
+</head>
+<body>
+<header class="sitebar"><div class="sitebar-inner"><div class="brand">Edu<span>Hunter</span>Play</div><a class="site-link" href="https://eduhunterplay.com/" target="_blank" rel="noopener">Visite nossa loja ↗</a></div></header>
+<div class="container">
+<section class="hero">
+<h1>⭐ Calculadora de Stardust</h1>
+<div class="sub">Pokémon GO — calcule rapidamente quanto Stardust você ganha pelas capturas.</div>
+</section>
+
+<div class="grid">
+  <div class="card"><div class="label">Total de capturas</div><div class="stat" id="totalCaptures">0</div></div>
+  <div class="card"><div class="label">Sem Star Piece</div><div class="stat" id="totalNormal">0</div></div>
+  <div class="card"><div class="label">Com Star Piece</div><div class="stat" id="totalPiece">0</div></div>
+</div>
+
+<div class="controls">
+  <button onclick="addRow()">+ Adicionar Pokémon</button>
+  <button class="secondary" onclick="clearRows()">Limpar</button>
+  <label class="switch"><input id="piece" type="checkbox" checked onchange="calculate()"> ⭐ Star Piece (+50%)</label>
+  <label class="switch"><input id="weather" type="checkbox" onchange="calculate()"> 🌦️ Bônus de clima (configurável)</label>
+</div>
+
+<div class="card" style="margin-bottom:16px">
+  <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+    <div style="flex:1;min-width:220px"><span class="label">Multiplicador de clima</span><input id="weatherMult" type="number" min="1" step="0.1" value="1.0" onchange="calculate()"></div>
+    <div style="flex:2;min-width:250px" class="note">Deixe em 1,0 se não quiser aplicar clima. O campo permite ajustar o multiplicador conforme a regra/bônus que você estiver usando.</div>
+  </div>
+</div>
+
+<div class="tablewrap">
+<table>
+<thead><tr><th>Pokémon</th><th>Quantidade</th><th>Stardust/captura</th><th>Subtotal</th><th>Com Star Piece</th><th></th></tr></thead>
+<tbody id="rows"></tbody>
+<tfoot><tr><td>TOTAL</td><td id="footQty">0</td><td></td><td id="footNormal">0</td><td id="footPiece">0</td><td></td></tr></tfoot>
+</table>
+</div>
+
+<div class="note">
+<b>Como usar:</b> escolha o Pokémon, informe a quantidade e a calculadora atualiza automaticamente.
+A Star Piece é calculada como <b>1,5×</b>. Os valores de Stardust por espécie são editáveis na própria tabela, caso um evento ou atualização do jogo altere os valores.
+<br><br>
+Os dados iniciais abaixo usam os valores de Stardust por captura informados nesta conversa.
+</div>
+</div>
+
+<footer class="footer"><div class="footer-inner"><div><div class="footer-title">Mais ferramentas e serviços para Pokémon GO</div><div class="footer-copy">Conheça a EduHunterPlay e acompanhe as novidades para sua jornada.</div></div><a href="https://eduhunterplay.com/" target="_blank" rel="noopener">Acessar eduhunterplay.com ↗</a></div></footer>
+
+<script>
+const data = [
+["Audino",2100],["Cloyster",1200],["Shellder",1000],["Chimecho",1000],
+["Persian de Alola",950],["Starmie",950],["Vespiquen",950],["Garbodor",950],
+["Dragapult",800],["Hydrapple",800],["Meowth de Alola",750],["Staryu",750],
+["Sableye",750],["Combee",750],["Trubbish",750],["Parasect",700],
+["Persian",700],["Breloom",700],["Amoonguss",700],["Shiinotic",700],
+["Paras",500],["Meowth",500],["Delibird",500],["Shroomish",500],
+["Foongus",500],["Morelull",500]
+];
+
+function money(n){return Math.round(n).toLocaleString("pt-BR")}
+function addRow(name="", qty=1, dust=100){
+ const tr=document.createElement("tr");
+ let options='<option value="100">Outro / comum (100)</option>'+data.map(x=>`<option value="${x[1]}" ${x[0]===name?"selected":""}>${x[0]} (${money(x[1])})</option>`).join("");
+ tr.innerHTML=`
+<td class="pokemon"><select onchange="syncDust(this)">${options}</select></td>
+<td><input class="num qty" type="number" min="0" step="1" value="${qty}" oninput="calculate()"></td>
+<td><input class="num dust" type="number" min="0" step="1" value="${dust}" oninput="calculate()"></td>
+<td class="normal">0</td><td class="withPiece">0</td>
+<td><button class="danger" onclick="this.closest('tr').remove();calculate()">X</button></td>`;
+ document.getElementById("rows").appendChild(tr);
+ if(name==="") tr.querySelector(".dust").value=dust;
+ calculate();
+}
+function syncDust(sel){sel.closest("tr").querySelector(".dust").value=sel.value;calculate()}
+function calculate(){
+ let totalQ=0,total=0,totalP=0;
+ const usePiece=document.getElementById("piece").checked;
+ const useWeather=document.getElementById("weather").checked;
+ const wm=Math.max(1,parseFloat(document.getElementById("weatherMult").value)||1);
+ document.querySelectorAll("#rows tr").forEach(tr=>{
+   const q=Math.max(0,parseInt(tr.querySelector(".qty").value)||0);
+   const d=Math.max(0,parseFloat(tr.querySelector(".dust").value)||0);
+   const normal=q*d*(useWeather?wm:1);
+   const piece=normal*(usePiece?1.5:1);
+   tr.querySelector(".normal").textContent=money(normal);
+   tr.querySelector(".withPiece").textContent=money(piece);
+   totalQ+=q;total+=normal;totalP+=piece;
+ });
+ document.getElementById("totalCaptures").textContent=money(totalQ);
+ document.getElementById("totalNormal").textContent=money(total);
+ document.getElementById("totalPiece").textContent=money(totalP);
+ document.getElementById("footQty").textContent=money(totalQ);
+ document.getElementById("footNormal").textContent=money(total);
+ document.getElementById("footPiece").textContent=money(totalP);
+}
+function clearRows(){document.getElementById("rows").innerHTML="";calculate()}
+addRow("Combee",50,750);
+addRow("Audino",0,2100);
+</script>
+</body>
+</html>

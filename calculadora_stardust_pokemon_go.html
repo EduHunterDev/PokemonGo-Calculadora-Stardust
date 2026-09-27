@@ -6,18 +6,18 @@
 <title>Calculadora de Stardust | EduHunterPlay</title>
 <style>
  :root{--bg:#faf8ff;--card:#ffffff;--card2:#f1edfb;--text:#28243d;--muted:#746e86;--accent:#8b5cf6;--accent-dark:#6d3fc4;--orange:#ed795f;--red:#d94f70;--border:#e5def2;--navy:#292044}
-*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+*{box-sizing:border-box} body{min-height:100vh;margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;display:flex;flex-direction:column}
 .sitebar{background:var(--navy);color:#fff;border-bottom:4px solid var(--accent);box-shadow:0 4px 14px #29204424}
 .sitebar-inner{max-width:1100px;margin:auto;padding:15px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}
 .brand{font-size:20px;font-weight:900;letter-spacing:.3px}.brand span{color:#fff}.site-link{color:#fff;text-decoration:none;font-size:13px;font-weight:700;border:1px solid #ffffff55;border-radius:7px;padding:8px 12px}.site-link:hover{background:#ffffff18}
-.container{max-width:1100px;margin:auto;padding:32px 24px 26px}
+.container{width:100%;max-width:1100px;flex:1;margin:0 auto;padding:32px 24px 26px}
 h1{margin:0 0 6px;font-size:32px;color:var(--navy)}.sub{color:var(--muted);margin-bottom:24px}
-.hero{background:linear-gradient(110deg,var(--accent-dark),#874acb 55%,#b84f9d);border-radius:12px;padding:24px 26px;margin-bottom:22px;color:#fff;box-shadow:0 8px 20px #6d3fc426}.hero h1{color:#fff}.hero .sub{color:#f7ebff;margin-bottom:0}
+.hero{background:linear-gradient(110deg,var(--accent-dark),#874acb 55%,#b84f9d);border-radius:12px;padding:24px 26px;margin-bottom:22px;color:#fff;box-shadow:0 8px 20px #6d3fc426;text-align:center}.hero h1{color:#fff}.hero .sub{color:#f7ebff;margin-bottom:0}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;box-shadow:0 3px 12px #2920440d}
 .grid .card{border-top:4px solid var(--accent)}.grid .card:nth-child(2){border-top-color:var(--orange)}.grid .card:nth-child(3){border-top-color:#e04747}
 .stat{font-size:28px;font-weight:700;margin-top:7px;color:var(--navy)}.label{color:var(--muted);font-size:14px}
-.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.controls{display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
 button{border:0;border-radius:8px;padding:11px 15px;font-weight:700;cursor:pointer;background:var(--orange);color:#fff;box-shadow:0 3px 8px #ed795f40}button:hover{filter:brightness(.95);transform:translateY(-1px)}
 button.secondary{background:var(--card2);color:var(--text);border:1px solid var(--border);box-shadow:none}button.danger{background:var(--red);color:white;box-shadow:none}
 label.switch{display:flex;align-items:center;gap:8px;background:var(--card);padding:10px 13px;border:1px solid var(--border);border-radius:8px}
@@ -29,13 +29,14 @@ input,select{background:#fff;color:var(--text);border:1px solid #d5c9e8;border-r
 .num{width:100px}.pokemon{min-width:180px}
 thead{background:var(--navy);color:#fff}thead th{color:#f2eaff}tfoot td{font-weight:700;background:var(--card2)}
 .note{color:var(--muted);font-size:13px;margin-top:14px;line-height:1.5}
+.alert-button{display:block;margin:4px auto 0}.route-buttons{display:flex;justify-content:center;gap:8px;margin-top:8px}.route-button{display:inline-block;background:var(--card2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-weight:700;text-decoration:none}.route-button:hover{background:#e8def8}.capture-alert{margin-top:12px;padding:16px;background:#fff8e7;border:1px solid #f0c36d;border-left:4px solid #ed795f;border-radius:8px;color:var(--text);font-size:13px;line-height:1.5}.capture-alert[hidden]{display:none}.capture-alert table{min-width:0;margin:10px 0 14px;border:1px solid #ecd9ad;box-shadow:none}.capture-alert th,.capture-alert td{padding:9px 10px}.capture-alert thead{background:#6d3f4c}.capture-alert p{margin:10px 0 0}
 .footer{background:var(--navy);color:#fff;margin-top:18px}.footer-inner{max-width:1100px;margin:auto;padding:26px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}.footer-title{font-weight:800;font-size:18px;margin-bottom:5px}.footer-copy{color:#b8c9d4;font-size:13px}.footer a{display:inline-block;background:var(--orange);color:#fff;text-decoration:none;font-weight:700;border-radius:8px;padding:11px 15px;white-space:nowrap}.footer a:hover{filter:brightness(.95)}
 @media(max-width:750px){.grid{grid-template-columns:1fr}.container{padding:14px}h1{font-size:24px}}
 @media(max-width:600px){.sitebar-inner,.footer-inner{padding-left:14px;padding-right:14px}.footer-inner{align-items:flex-start;flex-direction:column}.site-link{font-size:12px}.hero{padding:20px}}
 </style>
 </head>
 <body>
-<header class="sitebar"><div class="sitebar-inner"><div class="brand">Edu<span>Hunter</span>Play</div><a class="site-link" href="https://eduhunterplay.com/" target="_blank" rel="noopener">Visite nossa loja ↗</a></div></header>
+<header class="sitebar"><div class="sitebar-inner"><div class="brand">EDU<span>HUNTER</span>PLAY</div><a class="site-link" href="https://eduhunterplay.com/" target="_blank" rel="noopener">Visite nossa loja ↗</a></div></header>
 <div class="container">
 <section class="hero">
 <h1>⭐ Calculadora de Stardust</h1>
@@ -52,14 +53,7 @@ thead{background:var(--navy);color:#fff}thead th{color:#f2eaff}tfoot td{font-wei
   <button onclick="addRow()">+ Adicionar Pokémon</button>
   <button class="secondary" onclick="clearRows()">Limpar</button>
   <label class="switch"><input id="piece" type="checkbox" checked onchange="calculate()"> ⭐ Star Piece (+50%)</label>
-  <label class="switch"><input id="weather" type="checkbox" onchange="calculate()"> 🌦️ Bônus de clima (configurável)</label>
-</div>
-
-<div class="card" style="margin-bottom:16px">
-  <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-    <div style="flex:1;min-width:220px"><span class="label">Multiplicador de clima</span><input id="weatherMult" type="number" min="1" step="0.1" value="1.0" onchange="calculate()"></div>
-    <div style="flex:2;min-width:250px" class="note">Deixe em 1,0 se não quiser aplicar clima. O campo permite ajustar o multiplicador conforme a regra/bônus que você estiver usando.</div>
-  </div>
+  <label class="switch"><input id="weather" type="checkbox" onchange="calculate()"> 🌦️ Bônus de clima (+25%)</label>
 </div>
 
 <div class="tablewrap">
@@ -76,6 +70,27 @@ A Star Piece é calculada como <b>1,5×</b>. Os valores de Stardust por espécie
 <br><br>
 Os dados iniciais abaixo usam os valores de Stardust por captura informados nesta conversa.
 </div>
+
+<div class="route-buttons">
+<a class="route-button" href="rota-stardust-1.gpx" download>🗺️ Rota Stardust 1</a>
+<a class="route-button" href="rota-stardust-2.gpx" download>🗺️ Rota Stardust 2</a>
+</div>
+<div id="captureAlert" class="capture-alert" hidden>
+<strong>Uma referência prática seria:</strong>
+<table>
+<thead><tr><th>Situação</th><th>Capturas/hora</th></tr></thead>
+<tbody>
+<tr><td>Jogador casual</td><td><b>50–100</b></td></tr>
+<tr><td>Jogador bom, área normal</td><td><b>100–180</b></td></tr>
+<tr><td>Jogador bom + Quick Catch + área boa</td><td><b>180–300</b></td></tr>
+<tr><td>Jogador muito eficiente + muitos spawns</td><td><b>300–400+</b></td></tr>
+<tr><td>Spotlight/Community Day, grind pesado</td><td><b>300–500+</b></td></tr>
+</tbody>
+</table>
+<p>Há relatos recentes de jogadores fazendo cerca de <b>300/h em Spotlight/Community Day</b>, enquanto outros relatam <b>429 em uma hora</b> em uma situação de muitos spawns.</p>
+<p>O <b>Quick Catch</b> faz bastante diferença porque permite pular a animação normal de captura e entrar rapidamente no próximo encontro.</p>
+</div>
+<button class="secondary alert-button" type="button" onclick="toggleCaptureAlert()">⚠️ Ver referência prática de capturas por hora</button>
 </div>
 
 <footer class="footer"><div class="footer-inner"><div><div class="footer-title">Mais ferramentas e serviços para Pokémon GO</div><div class="footer-copy">Conheça a EduHunterPlay e acompanhe as novidades para sua jornada.</div></div><a href="https://eduhunterplay.com/" target="_blank" rel="noopener">Acessar eduhunterplay.com ↗</a></div></footer>
@@ -110,11 +125,10 @@ function calculate(){
  let totalQ=0,total=0,totalP=0;
  const usePiece=document.getElementById("piece").checked;
  const useWeather=document.getElementById("weather").checked;
- const wm=Math.max(1,parseFloat(document.getElementById("weatherMult").value)||1);
  document.querySelectorAll("#rows tr").forEach(tr=>{
    const q=Math.max(0,parseInt(tr.querySelector(".qty").value)||0);
    const d=Math.max(0,parseFloat(tr.querySelector(".dust").value)||0);
-   const normal=q*d*(useWeather?wm:1);
+   const normal=q*d*(useWeather?1.25:1);
    const piece=normal*(usePiece?1.5:1);
    tr.querySelector(".normal").textContent=money(normal);
    tr.querySelector(".withPiece").textContent=money(piece);
@@ -128,8 +142,12 @@ function calculate(){
  document.getElementById("footPiece").textContent=money(totalP);
 }
 function clearRows(){document.getElementById("rows").innerHTML="";calculate()}
-addRow("Combee",50,750);
-addRow("Audino",0,2100);
+function toggleCaptureAlert(){
+ const alertBox=document.getElementById("captureAlert");
+ alertBox.hidden=!alertBox.hidden;
+}
+addRow("Combee",10,750);
+
 </script>
 </body>
 </html>

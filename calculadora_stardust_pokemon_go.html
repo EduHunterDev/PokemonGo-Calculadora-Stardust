@@ -5,149 +5,734 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calculadora de Stardust | EduHunterPlay</title>
 <style>
- :root{--bg:#faf8ff;--card:#ffffff;--card2:#f1edfb;--text:#28243d;--muted:#746e86;--accent:#8b5cf6;--accent-dark:#6d3fc4;--orange:#ed795f;--red:#d94f70;--border:#e5def2;--navy:#292044}
-*{box-sizing:border-box} body{min-height:100vh;margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;display:flex;flex-direction:column}
+:root{
+  --bg:#faf8ff;--card:#ffffff;--card2:#f1edfb;--text:#28243d;--muted:#746e86;
+  --accent:#8b5cf6;--accent-dark:#6d3fc4;--orange:#ed795f;--red:#d94f70;
+  --green:#2f9e67;--border:#e5def2;--navy:#292044;--warning:#fff8e7;
+}
+*{box-sizing:border-box}
+body{min-height:100vh;margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;display:flex;flex-direction:column}
 .sitebar{background:var(--navy);color:#fff;border-bottom:4px solid var(--accent);box-shadow:0 4px 14px #29204424}
-.sitebar-inner{max-width:1100px;margin:auto;padding:15px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}
-.brand{font-size:20px;font-weight:900;letter-spacing:.3px}.brand span{color:#fff}.site-link{color:#fff;text-decoration:none;font-size:13px;font-weight:700;border:1px solid #ffffff55;border-radius:7px;padding:8px 12px}.site-link:hover{background:#ffffff18}
-.container{width:100%;max-width:1100px;flex:1;margin:0 auto;padding:32px 24px 26px}
-h1{margin:0 0 6px;font-size:32px;color:var(--navy)}.sub{color:var(--muted);margin-bottom:24px}
-.hero{background:linear-gradient(110deg,var(--accent-dark),#874acb 55%,#b84f9d);border-radius:12px;padding:24px 26px;margin-bottom:22px;color:#fff;box-shadow:0 8px 20px #6d3fc426;text-align:center}.hero h1{color:#fff}.hero .sub{color:#f7ebff;margin-bottom:0}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px}
+.sitebar-inner{max-width:1180px;margin:auto;padding:15px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{font-size:20px;font-weight:900;letter-spacing:.3px}.brand span{color:#fff}
+.site-link{color:#fff;text-decoration:none;font-size:13px;font-weight:700;border:1px solid #ffffff55;border-radius:7px;padding:8px 12px}
+.site-link:hover{background:#ffffff18}
+.container{width:100%;max-width:1180px;flex:1;margin:0 auto;padding:32px 24px 26px}
+h1{margin:0 0 6px;font-size:32px;color:var(--navy)} h2{margin:0 0 14px;color:var(--navy)}
+.sub{color:var(--muted);margin-bottom:24px}
+.hero{background:linear-gradient(110deg,var(--accent-dark),#874acb 55%,#b84f9d);border-radius:12px;padding:24px 26px;margin-bottom:22px;color:#fff;box-shadow:0 8px 20px #6d3fc426;text-align:center}
+.hero h1{color:#fff}.hero .sub{color:#f7ebff;margin-bottom:0}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;box-shadow:0 3px 12px #2920440d}
-.grid .card{border-top:4px solid var(--accent)}.grid .card:nth-child(2){border-top-color:var(--orange)}.grid .card:nth-child(3){border-top-color:#e04747}
-.stat{font-size:28px;font-weight:700;margin-top:7px;color:var(--navy)}.label{color:var(--muted);font-size:14px}
-.controls{display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
-button{border:0;border-radius:8px;padding:11px 15px;font-weight:700;cursor:pointer;background:var(--orange);color:#fff;box-shadow:0 3px 8px #ed795f40}button:hover{filter:brightness(.95);transform:translateY(-1px)}
-button.secondary{background:var(--card2);color:var(--text);border:1px solid var(--border);box-shadow:none}button.danger{background:var(--red);color:white;box-shadow:none}
+.grid .card{border-top:4px solid var(--accent)}
+.grid .card:nth-child(2){border-top-color:var(--orange)}
+.grid .card:nth-child(3){border-top-color:#e04747}
+.grid .card:nth-child(4){border-top-color:var(--green)}
+.stat{font-size:26px;font-weight:700;margin-top:7px;color:var(--navy)}
+.label{color:var(--muted);font-size:14px}
+.controls{display:flex;gap:10px;align-items:end;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+.control-actions{display:flex;flex-direction:column;gap:8px}
+.control-block{min-width:165px}
+.control-block label{display:block;color:var(--muted);font-size:12px;font-weight:700;margin:0 0 5px}
+button{border:0;border-radius:8px;padding:11px 15px;font-weight:700;cursor:pointer;background:var(--orange);color:#fff;box-shadow:0 3px 8px #ed795f40}
+button:hover{filter:brightness(.95);transform:translateY(-1px)}
+button.secondary{background:var(--card2);color:var(--text);border:1px solid var(--border);box-shadow:none}
+button.danger{background:var(--red);color:white;box-shadow:none;padding:8px 11px}
 label.switch{display:flex;align-items:center;gap:8px;background:var(--card);padding:10px 13px;border:1px solid var(--border);border-radius:8px}
 input[type=checkbox]{width:18px;height:18px}
 .tablewrap{overflow:auto;border:1px solid var(--border);border-radius:12px;box-shadow:0 3px 12px #2920440d}
-table{width:100%;border-collapse:collapse;min-width:760px;background:var(--card)}
-th,td{padding:11px;border-bottom:1px solid var(--border);text-align:left}th{color:var(--muted);font-size:13px}
+table{width:100%;border-collapse:collapse;min-width:920px;background:var(--card)}
+th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:middle}
+th{color:var(--muted);font-size:13px}
 input,select{background:#fff;color:var(--text);border:1px solid #d5c9e8;border-radius:7px;padding:8px;width:100%}
-.num{width:100px}.pokemon{min-width:180px}
-thead{background:var(--navy);color:#fff}thead th{color:#f2eaff}tfoot td{font-weight:700;background:var(--card2)}
+.num{width:100px}.pokemon{min-width:190px}.types{font-size:12px;color:var(--muted);min-width:130px}
+thead{background:var(--navy);color:#fff} thead th{color:#f2eaff}
+tfoot td{font-weight:700;background:var(--card2)}
+.boost{display:inline-block;font-size:11px;padding:4px 7px;border-radius:999px;background:#eaf8f0;color:#267a50;font-weight:800}
+.no-boost{display:inline-block;font-size:11px;padding:4px 7px;border-radius:999px;background:#f1eef6;color:#746e86;font-weight:700}
+.section{margin-top:22px}
+.planner{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.field label{display:block;color:var(--muted);font-size:12px;font-weight:700;margin-bottom:5px}
+.result-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.xp-layout{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+.xp-fields{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px}
+.xp-bonus-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.xp-bonus-grid label{display:flex;align-items:center;gap:7px;padding:9px;background:var(--card2);border:1px solid var(--border);border-radius:7px;font-size:13px}
+.xp-bonus-grid input{width:18px;height:18px;flex:0 0 auto}
+.xp-section h3{margin:16px 0 9px;font-size:14px;color:var(--navy)}
+.result{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:13px}
+.result strong{display:block;font-size:21px;color:var(--navy);margin-top:4px}
 .note{color:var(--muted);font-size:13px;margin-top:14px;line-height:1.5}
-.alert-button{display:block;margin:4px auto 0}.route-buttons{display:flex;justify-content:center;gap:8px;margin-top:8px}.route-button{display:inline-block;background:var(--card2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-weight:700;text-decoration:none}.route-button:hover{background:#e8def8}.capture-alert{margin-top:12px;padding:16px;background:#fff8e7;border:1px solid #f0c36d;border-left:4px solid #ed795f;border-radius:8px;color:var(--text);font-size:13px;line-height:1.5}.capture-alert[hidden]{display:none}.capture-alert table{min-width:0;margin:10px 0 14px;border:1px solid #ecd9ad;box-shadow:none}.capture-alert th,.capture-alert td{padding:9px 10px}.capture-alert thead{background:#6d3f4c}.capture-alert p{margin:10px 0 0}
-.footer{background:var(--navy);color:#fff;margin-top:18px}.footer-inner{max-width:1100px;margin:auto;padding:26px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}.footer-title{font-weight:800;font-size:18px;margin-bottom:5px}.footer-copy{color:#b8c9d4;font-size:13px}.footer a{display:inline-block;background:var(--orange);color:#fff;text-decoration:none;font-weight:700;border-radius:8px;padding:11px 15px;white-space:nowrap}.footer a:hover{filter:brightness(.95)}
-@media(max-width:750px){.grid{grid-template-columns:1fr}.container{padding:14px}h1{font-size:24px}}
-@media(max-width:600px){.sitebar-inner,.footer-inner{padding-left:14px;padding-right:14px}.footer-inner{align-items:flex-start;flex-direction:column}.site-link{font-size:12px}.hero{padding:20px}}
+.info{margin-top:14px;padding:14px;background:var(--warning);border:1px solid #f0c36d;border-left:4px solid var(--orange);border-radius:8px;font-size:13px;line-height:1.5}
+.status{margin-top:10px;font-size:12px;color:var(--muted);text-align:right}
+.footer{background:var(--navy);color:#fff;margin-top:18px}
+.footer-inner{max-width:1180px;margin:auto;padding:26px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.footer-title{font-weight:800;font-size:18px;margin-bottom:5px}.footer-copy{color:#b8c9d4;font-size:13px}
+.footer a{display:inline-block;background:var(--orange);color:#fff;text-decoration:none;font-weight:700;border-radius:8px;padding:11px 15px;white-space:nowrap}
+.footer a:hover{filter:brightness(.95)}
+.hidden{display:none!important}
+@media(max-width:850px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .planner,.xp-layout{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .grid{grid-template-columns:1fr}
+  .container{padding:14px} h1{font-size:24px}
+  .sitebar-inner,.footer-inner{padding-left:14px;padding-right:14px}
+  .footer-inner{align-items:flex-start;flex-direction:column}.site-link{font-size:12px}.hero{padding:20px}
+  .form-grid,.result-grid,.xp-fields{grid-template-columns:1fr}
+  .xp-bonus-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .control-block{width:100%}
+}
 </style>
 </head>
 <body>
-<header class="sitebar"><div class="sitebar-inner"><div class="brand">EDU<span>HUNTER</span>PLAY</div><a class="site-link" href="https://eduhunterplay.com/" target="_blank" rel="noopener">Visite nossa loja ↗</a></div></header>
+<header class="sitebar">
+  <div class="sitebar-inner">
+    <div class="brand">EDU<span>HUNTER</span>PLAY</div>
+    <a class="site-link" href="https://eduhunterplay.com/" target="_blank" rel="noopener">Visite nossa loja ↗</a>
+  </div>
+</header>
+
 <div class="container">
-<section class="hero">
-<h1>⭐ Calculadora de Stardust</h1>
-<div class="sub">Pokémon GO — calcule rapidamente quanto Stardust você ganha pelas capturas.</div>
-</section>
+  <section class="hero">
+    <h1> ✨STARDUST</h1>
+    <div class="sub">Pokémon GO — calcule capturas, clima, eventos, Pedaço de Estrela e planeje sua meta de Poeira Estelar.</div>
+  </section>
 
-<div class="grid">
-  <div class="card"><div class="label">Total de capturas</div><div class="stat" id="totalCaptures">0</div></div>
-  <div class="card"><div class="label">Sem Star Piece</div><div class="stat" id="totalNormal">0</div></div>
-  <div class="card"><div class="label">Com Star Piece</div><div class="stat" id="totalPiece">0</div></div>
+  <div class="grid">
+    <div class="card"><div class="label">Total de capturas</div><div class="stat" id="totalCaptures">0</div></div>
+    <div class="card"><div class="label">Sem Pedaço de Estrela</div><div class="stat" id="totalNormal">0</div></div>
+    <div class="card"><div class="label">Stardust final</div><div class="stat" id="totalFinal">0</div></div>
+    <div class="card"><div class="label">Média por captura</div><div class="stat" id="avgDust">0</div></div>
+  </div>
+
+  <div class="controls">
+    <div class="control-actions">
+      <button onclick="addRow()">+ Adicionar Pokémon</button>
+      <button class="secondary" onclick="clearRows()">Limpar</button>
+    </div>
+
+    <div class="control-block">
+      <label for="weather">Clima</label>
+      <select id="weather" onchange="syncWeatherBoosts();calculate()">
+        <option value="none">Sem bônus de clima</option>
+        <option value="sunny">Ensolarado / Limpo</option>
+        <option value="rainy">Chuvoso</option>
+        <option value="partly">Parcialmente nublado</option>
+        <option value="cloudy">Nublado</option>
+        <option value="windy">Ventando</option>
+        <option value="snow">Neve</option>
+        <option value="fog">Névoa</option>
+      </select>
+    </div>
+
+    <div class="control-block">
+      <label for="eventMultiplier">Multiplicador do evento</label>
+      <select id="eventMultiplier" onchange="toggleCustomEvent();calculate()">
+        <option value="1">1× (normal)</option>
+        <option value="2">2× Stardust</option>
+        <option value="3">3× Stardust</option>
+        <option value="4">4× Stardust</option>
+        <option value="custom">Personalizado</option>
+      </select>
+    </div>
+
+    <div class="control-block hidden" id="customEventWrap">
+      <label for="customEventMultiplier">Multiplicador personalizado</label>
+      <input id="customEventMultiplier" type="number" min="0.1" step="0.1" value="1" oninput="calculate()">
+    </div>
+
+    <label class="switch">
+      <input id="piece" type="checkbox" checked onchange="calculate()">
+      ⭐ Pedaço de Estrela (+50%)
+    </label>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Pokémon</th>
+          <th>Tipos</th>
+          <th>Quantidade</th>
+          <th>Stardust base</th>
+          <th>Clima</th>
+          <th>Sem Pedaço</th>
+          <th>Final</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+      <tfoot>
+        <tr>
+          <td>TOTAL</td><td></td>
+          <td id="footQty">0</td><td></td><td></td>
+          <td id="footNormal">0</td><td id="footFinal">0</td><td></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="note">
+    <b>Clima inteligente:</b> ao selecionar o clima, a calculadora verifica os tipos conhecidos de cada espécie e aplica automaticamente o bônus de clima somente quando ela é favorecida.
+    Para “Outro / comum”, o bônus pode ser marcado manualmente na própria linha.
+    <br><br>
+    <b>Eventos:</b> use o multiplicador configurável para representar bônus temporários do jogo sem precisar alterar o código.
+  </div>
+
+  <section class="section planner">
+    <div class="card">
+      <h2>🎯 Planejador de Farm</h2>
+      <div class="form-grid">
+        <div class="field">
+          <label for="currentDust">Stardust atual</label>
+          <input id="currentDust" type="number" min="0" step="1000" value="0" oninput="calculatePlanner()">
+        </div>
+        <div class="field">
+          <label for="goalDust">Meta de Stardust</label>
+          <input id="goalDust" type="number" min="0" step="1000" value="1000000" oninput="calculatePlanner()">
+        </div>
+        <div class="field">
+          <label for="capturesPerHour">Capturas por hora</label>
+          <input id="capturesPerHour" type="number" min="0" step="1" value="250" oninput="calculatePlanner()">
+        </div>
+        <div class="field">
+          <label for="sessionMinutes">Duração planejada (min)</label>
+          <input id="sessionMinutes" type="number" min="0" step="10" value="60" oninput="calculatePlanner()">
+        </div>
+        <div class="field">
+          <label for="pieceDuration">Duração do Pedaço de Estrela (min)</label>
+          <input id="pieceDuration" type="number" min="1" step="1" value="30" oninput="calculatePlanner()">
+        </div>
+      </div>
+      <div class="info">
+        O planejador usa a <b>média de Stardust por captura</b> da tabela acima como amostra do seu farm.
+        Quanto mais a proporção da tabela representar os spawns reais da rota, melhor será a estimativa.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📊 Estimativa</h2>
+      <div class="result-grid">
+        <div class="result"><span class="label">Stardust / hora</span><strong id="dustPerHour">0</strong></div>
+        <div class="result"><span class="label">Capturas na sessão</span><strong id="sessionCaptures">0</strong></div>
+        <div class="result"><span class="label">Stardust na sessão</span><strong id="sessionDust">0</strong></div>
+        <div class="result"><span class="label">Falta para a meta</span><strong id="dustMissing">0</strong></div>
+        <div class="result"><span class="label">Tempo até a meta</span><strong id="timeToGoal">—</strong></div>
+        <div class="result"><span class="label">Pedaços para a meta</span><strong id="piecesToGoal">0</strong></div>
+      </div>
+      <div class="status" id="saveStatus">Configurações salvas neste navegador.</div>
+    </div>
+  </section>
+
+  <section class="section xp-section">
+    <section class="hero" aria-labelledby="xpTitle">
+      <h1 id="xpTitle">⭐XP</h1>
+      <div class="sub">Pokémon GO — estime XP de capturas, bônus e eventos.</div>
+    </section>
+    <div class="card">
+    <div class="xp-layout">
+      <div>
+        <div class="xp-fields">
+          <div class="field">
+            <label for="xpCaptureCount">Quantidade de capturas</label>
+            <input id="xpCaptureCount" type="number" min="0" step="1" value="1" oninput="calculateXp()">
+          </div>
+          <div class="field">
+            <label for="xpEventMultiplier">Bônus de evento</label>
+            <select id="xpEventMultiplier" onchange="calculateXp()">
+              <option value="1">1× (normal)</option>
+              <option value="2">2× XP</option>
+              <option value="3">3× XP</option>
+              <option value="4">4× XP</option>
+              <option value="5">5× XP</option>
+              <option value="6">6× XP</option>
+              <option value="8">8× XP</option>
+            </select>
+          </div>
+          <label class="switch">
+            <input id="xpLuckyEgg" type="checkbox" onchange="calculateXp()">
+            Lucky Egg (dobra o XP)
+          </label>
+        </div>
+
+        <h3>Bônus por captura</h3>
+        <div class="xp-bonus-grid">
+          <label><input type="checkbox" data-xp-bonus="firstThrow" value="50" onchange="calculateXp()">Primeiro arremesso (+50)</label>
+          <label><input type="checkbox" data-xp-bonus="curveball" value="20" onchange="calculateXp()">Bola curva (+20)</label>
+          <label><input type="checkbox" data-xp-bonus="weather" value="25" onchange="calculateXp()">Clima favorável (+25)</label>
+          <label><input type="checkbox" data-xp-bonus="newPokemon" value="1000" onchange="calculateXp()">Novo Pokémon (+1.000)</label>
+          <label><input type="checkbox" data-xp-bonus="arPlus" value="300" onchange="calculateXp()">Bônus AR+ (+300)</label>
+        </div>
+
+        <h3>Qualidade do arremesso (marque uma)</h3>
+        <div class="xp-bonus-grid">
+          <label><input type="checkbox" data-xp-bonus="nice" data-xp-group="throw" value="20" onchange="selectXpBonus(this, 'throw')">Nice (+20)</label>
+          <label><input type="checkbox" data-xp-bonus="great" data-xp-group="throw" value="100" onchange="selectXpBonus(this, 'throw')">Great (+100)</label>
+          <label><input type="checkbox" data-xp-bonus="excellent" data-xp-group="throw" value="1000" onchange="selectXpBonus(this, 'throw')">Excellent (+1.000)</label>
+        </div>
+
+        <h3>Bônus único de sequência (marque um)</h3>
+        <div class="xp-bonus-grid">
+          <label><input id="xpDailyBonus" type="checkbox" data-xp-one-time="1500" data-xp-group="streak" onchange="selectXpBonus(this, 'streak')">Primeira captura do dia (+1.500)</label>
+          <label><input id="xpWeekBonus" type="checkbox" data-xp-one-time="6000" data-xp-group="streak" onchange="selectXpBonus(this, 'streak')">Sequência de 7 dias (+6.000)</label>
+        </div>
+      </div>
+
+      <div class="result-grid">
+        <div class="result"><span class="label">XP base por captura</span><strong id="xpBaseResult">100</strong></div>
+        <div class="result"><span class="label">XP por captura com bônus</span><strong id="xpPerCaptureResult">100</strong></div>
+        <div class="result"><span class="label">XP total estimado</span><strong id="xpTotalResult">100</strong></div>
+        <div class="result"><span class="label">Multiplicador aplicado</span><strong id="xpAppliedMultiplier">1×</strong></div>
+      </div>
+    </div>
+    <div class="note">O XP total considera os bônus marcados em cada captura; o bônus diário ou de 7 dias é contado uma única vez. Qualidades Nice, Great e Excellent são mutuamente exclusivas.</div>
+    </div>
+  </section>
+
+  <section class="section planner">
+    <div class="card">
+      <h2>🎯 Planejador de Farm de XP</h2>
+      <div class="form-grid">
+        <div class="field">
+          <label for="currentXp">XP atual</label>
+          <input id="currentXp" type="number" min="0" step="1000" value="0" oninput="calculateXpPlanner()">
+        </div>
+        <div class="field">
+          <label for="goalXp">Meta de XP</label>
+          <input id="goalXp" type="number" min="0" step="1000" value="1000000" oninput="calculateXpPlanner()">
+        </div>
+        <div class="field">
+          <label for="xpCapturesPerHour">Capturas por hora</label>
+          <input id="xpCapturesPerHour" type="number" min="0" step="1" value="250" oninput="calculateXpPlanner()">
+        </div>
+        <div class="field">
+          <label for="xpSessionMinutes">Duração planejada (min)</label>
+          <input id="xpSessionMinutes" type="number" min="0" step="10" value="60" oninput="calculateXpPlanner()">
+        </div>
+      </div>
+      <div class="info">A estimativa usa o XP por captura com bônus e evento selecionados na calculadora acima.</div>
+    </div>
+
+    <div class="card">
+      <h2>📊 Estimativa de XP</h2>
+      <div class="result-grid">
+        <div class="result"><span class="label">XP / hora</span><strong id="xpPerHour">0</strong></div>
+        <div class="result"><span class="label">Capturas na sessão</span><strong id="xpSessionCaptures">0</strong></div>
+        <div class="result"><span class="label">XP na sessão</span><strong id="xpSessionTotal">0</strong></div>
+        <div class="result"><span class="label">Falta para a meta</span><strong id="xpMissing">0</strong></div>
+        <div class="result"><span class="label">Capturas até a meta</span><strong id="xpCapturesToGoal">0</strong></div>
+        <div class="result"><span class="label">Tempo até a meta</span><strong id="xpTimeToGoal">—</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="info">
+    <b>Observação:</b> valores e bônus de eventos podem mudar. O multiplicador personalizado permite adaptar a ferramenta sem editar o código.
+    A duração padrão do Pedaço de Estrela foi definida como 30 minutos e pode ser alterada manualmente em caso de evento especial.
+  </div>
 </div>
 
-<div class="controls">
-  <button onclick="addRow()">+ Adicionar Pokémon</button>
-  <button class="secondary" onclick="clearRows()">Limpar</button>
-  <label class="switch"><input id="piece" type="checkbox" checked onchange="calculate()"> ⭐ Star Piece (+50%)</label>
-  <label class="switch"><input id="weather" type="checkbox" onchange="calculate()"> 🌦️ Bônus de clima (+25%)</label>
-</div>
-
-<div class="tablewrap">
-<table>
-<thead><tr><th>Pokémon</th><th>Quantidade</th><th>Stardust/captura</th><th>Subtotal</th><th>Com Star Piece</th><th></th></tr></thead>
-<tbody id="rows"></tbody>
-<tfoot><tr><td>TOTAL</td><td id="footQty">0</td><td></td><td id="footNormal">0</td><td id="footPiece">0</td><td></td></tr></tfoot>
-</table>
-</div>
-
-<div class="note">
-<b>Como usar:</b> escolha o Pokémon, informe a quantidade e a calculadora atualiza automaticamente.
-A Star Piece é calculada como <b>1,5×</b>. Os valores de Stardust por espécie são editáveis na própria tabela, caso um evento ou atualização do jogo altere os valores.
-<br><br>
-Os dados iniciais abaixo usam os valores de Stardust por captura informados nesta conversa.
-</div>
-
-<div class="route-buttons">
-<a class="route-button" href="rota-stardust-1.gpx" download>🗺️ Rota Stardust 1</a>
-<a class="route-button" href="rota-stardust-2.gpx" download>🗺️ Rota Stardust 2</a>
-</div>
-<div id="captureAlert" class="capture-alert" hidden>
-<strong>Uma referência prática seria:</strong>
-<table>
-<thead><tr><th>Situação</th><th>Capturas/hora</th></tr></thead>
-<tbody>
-<tr><td>Jogador casual</td><td><b>50–100</b></td></tr>
-<tr><td>Jogador bom, área normal</td><td><b>100–180</b></td></tr>
-<tr><td>Jogador bom + Quick Catch + área boa</td><td><b>180–300</b></td></tr>
-<tr><td>Jogador muito eficiente + muitos spawns</td><td><b>300–400+</b></td></tr>
-<tr><td>Spotlight/Community Day, grind pesado</td><td><b>300–500+</b></td></tr>
-</tbody>
-</table>
-<p>Há relatos recentes de jogadores fazendo cerca de <b>300/h em Spotlight/Community Day</b>, enquanto outros relatam <b>429 em uma hora</b> em uma situação de muitos spawns.</p>
-<p>O <b>Quick Catch</b> faz bastante diferença porque permite pular a animação normal de captura e entrar rapidamente no próximo encontro.</p>
-</div>
-<button class="secondary alert-button" type="button" onclick="toggleCaptureAlert()">⚠️ Ver referência prática de capturas por hora</button>
-</div>
-
-<footer class="footer"><div class="footer-inner"><div><div class="footer-title">Mais ferramentas e serviços para Pokémon GO</div><div class="footer-copy">Conheça a EduHunterPlay e acompanhe as novidades para sua jornada.</div></div><a href="https://eduhunterplay.com/" target="_blank" rel="noopener">Acessar eduhunterplay.com ↗</a></div></footer>
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-title">Mais ferramentas e serviços para Pokémon GO</div>
+      <div class="footer-copy">Conheça a EduHunterPlay e acompanhe as novidades para sua jornada.</div>
+    </div>
+    <a href="https://eduhunterplay.com/" target="_blank" rel="noopener">Acessar eduhunterplay.com ↗</a>
+  </div>
+</footer>
 
 <script>
-const data = [
-["Audino",2100],["Cloyster",1200],["Shellder",1000],["Chimecho",1000],
-["Persian de Alola",950],["Starmie",950],["Vespiquen",950],["Garbodor",950],
-["Dragapult",800],["Hydrapple",800],["Meowth de Alola",750],["Staryu",750],
-["Sableye",750],["Combee",750],["Trubbish",750],["Parasect",700],
-["Persian",700],["Breloom",700],["Amoonguss",700],["Shiinotic",700],
-["Paras",500],["Meowth",500],["Delibird",500],["Shroomish",500],
-["Foongus",500],["Morelull",500]
+const pokemonData = [
+  {name:"Audino",dust:2100,types:["Normal"]},
+  {name:"Cloyster",dust:1200,types:["Água","Gelo"]},
+  {name:"Shellder",dust:1000,types:["Água"]},
+  {name:"Chimecho",dust:1000,types:["Psíquico"]},
+  {name:"Persian de Alola",dust:950,types:["Noturno"]},
+  {name:"Starmie",dust:950,types:["Água","Psíquico"]},
+  {name:"Vespiquen",dust:950,types:["Inseto","Voador"]},
+  {name:"Garbodor",dust:950,types:["Venenoso"]},
+  {name:"Dragapult",dust:800,types:["Dragão","Fantasma"]},
+  {name:"Hydrapple",dust:800,types:["Grama","Dragão"]},
+  {name:"Meowth de Alola",dust:750,types:["Noturno"]},
+  {name:"Staryu",dust:750,types:["Água"]},
+  {name:"Sableye",dust:750,types:["Noturno","Fantasma"]},
+  {name:"Combee",dust:750,types:["Inseto","Voador"]},
+  {name:"Trubbish",dust:750,types:["Venenoso"]},
+  {name:"Parasect",dust:700,types:["Inseto","Grama"]},
+  {name:"Persian",dust:700,types:["Normal"]},
+  {name:"Breloom",dust:700,types:["Grama","Lutador"]},
+  {name:"Amoonguss",dust:700,types:["Grama","Venenoso"]},
+  {name:"Shiinotic",dust:700,types:["Grama","Fada"]},
+  {name:"Paras",dust:500,types:["Inseto","Grama"]},
+  {name:"Meowth",dust:500,types:["Normal"]},
+  {name:"Delibird",dust:500,types:["Gelo","Voador"]},
+  {name:"Shroomish",dust:500,types:["Grama"]},
+  {name:"Foongus",dust:500,types:["Grama","Venenoso"]},
+  {name:"Morelull",dust:500,types:["Grama","Fada"]}
 ];
 
-function money(n){return Math.round(n).toLocaleString("pt-BR")}
-function addRow(name="", qty=1, dust=100){
- const tr=document.createElement("tr");
- let options='<option value="100">Outro / comum (100)</option>'+data.map(x=>`<option value="${x[1]}" ${x[0]===name?"selected":""}>${x[0]} (${money(x[1])})</option>`).join("");
- tr.innerHTML=`
-<td class="pokemon"><select onchange="syncDust(this)">${options}</select></td>
-<td><input class="num qty" type="number" min="0" step="1" value="${qty}" oninput="calculate()"></td>
-<td><input class="num dust" type="number" min="0" step="1" value="${dust}" oninput="calculate()"></td>
-<td class="normal">0</td><td class="withPiece">0</td>
-<td><button class="danger" onclick="this.closest('tr').remove();calculate()">X</button></td>`;
- document.getElementById("rows").appendChild(tr);
- if(name==="") tr.querySelector(".dust").value=dust;
- calculate();
-}
-function syncDust(sel){sel.closest("tr").querySelector(".dust").value=sel.value;calculate()}
-function calculate(){
- let totalQ=0,total=0,totalP=0;
- const usePiece=document.getElementById("piece").checked;
- const useWeather=document.getElementById("weather").checked;
- document.querySelectorAll("#rows tr").forEach(tr=>{
-   const q=Math.max(0,parseInt(tr.querySelector(".qty").value)||0);
-   const d=Math.max(0,parseFloat(tr.querySelector(".dust").value)||0);
-   const normal=q*d*(useWeather?1.25:1);
-   const piece=normal*(usePiece?1.5:1);
-   tr.querySelector(".normal").textContent=money(normal);
-   tr.querySelector(".withPiece").textContent=money(piece);
-   totalQ+=q;total+=normal;totalP+=piece;
- });
- document.getElementById("totalCaptures").textContent=money(totalQ);
- document.getElementById("totalNormal").textContent=money(total);
- document.getElementById("totalPiece").textContent=money(totalP);
- document.getElementById("footQty").textContent=money(totalQ);
- document.getElementById("footNormal").textContent=money(total);
- document.getElementById("footPiece").textContent=money(totalP);
-}
-function clearRows(){document.getElementById("rows").innerHTML="";calculate()}
-function toggleCaptureAlert(){
- const alertBox=document.getElementById("captureAlert");
- alertBox.hidden=!alertBox.hidden;
-}
-addRow("Combee",10,750);
+const weatherTypes = {
+  none: [],
+  sunny: ["Grama","Fogo","Terra"],
+  rainy: ["Água","Elétrico","Inseto"],
+  partly: ["Normal","Pedra"],
+  cloudy: ["Fada","Lutador","Venenoso"],
+  windy: ["Voador","Dragão","Psíquico"],
+  snow: ["Gelo","Aço"],
+  fog: ["Noturno","Fantasma"]
+};
 
+const money = n => Math.round(Number(n)||0).toLocaleString("pt-BR");
+const STORAGE_KEY = "eduhunter_stardust_v2";
+
+function getEventMultiplier(){
+  const selected = document.getElementById("eventMultiplier").value;
+  if(selected === "custom"){
+    return Math.max(0.1, parseFloat(document.getElementById("customEventMultiplier").value) || 1);
+  }
+  return parseFloat(selected) || 1;
+}
+
+function toggleCustomEvent(){
+  const isCustom = document.getElementById("eventMultiplier").value === "custom";
+  document.getElementById("customEventWrap").classList.toggle("hidden", !isCustom);
+}
+
+function getPokemon(name){
+  return pokemonData.find(p => p.name === name) || null;
+}
+
+function isBoostedByWeather(types){
+  const selectedWeather = document.getElementById("weather").value;
+  const boosted = weatherTypes[selectedWeather] || [];
+  return types.some(type => boosted.includes(type));
+}
+
+function optionList(selectedName=""){
+  const commonSelected = selectedName === "" || selectedName === "Outro / comum";
+  return `<option value="Outro / comum" ${commonSelected?"selected":""}>Outro / comum (100)</option>` +
+    pokemonData.map(p => `<option value="${p.name}" ${p.name===selectedName?"selected":""}>${p.name} (${money(p.dust)})</option>`).join("");
+}
+
+function addRow(name="", qty=1, dust=100, manualWeather=null){
+  const tr = document.createElement("tr");
+  const pokemon = getPokemon(name);
+  const types = pokemon ? pokemon.types : [];
+
+  tr.innerHTML = `
+    <td class="pokemon">
+      <select class="pokemonSelect" onchange="syncPokemon(this)">${optionList(name)}</select>
+    </td>
+    <td class="types">${types.length ? types.join(" / ") : "Personalizado"}</td>
+    <td><input class="num qty" type="number" min="0" step="1" value="${qty}" oninput="calculate()"></td>
+    <td><input class="num dust" type="number" min="0" step="1" value="${dust}" oninput="calculate()"></td>
+    <td>
+      <label style="display:flex;align-items:center;gap:6px;white-space:nowrap">
+        <input class="weatherBoost" type="checkbox" onchange="markManualWeather(this);calculate()">
+        <span class="weatherLabel no-boost">Não</span>
+      </label>
+    </td>
+    <td class="normal">0</td>
+    <td class="final">0</td>
+    <td><button class="danger" onclick="this.closest('tr').remove();calculate()">X</button></td>
+  `;
+
+  tr.dataset.manualWeather = manualWeather === null ? "auto" : "manual";
+  document.getElementById("rows").appendChild(tr);
+
+  if(pokemon){
+    tr.querySelector(".dust").value = pokemon.dust;
+  }else{
+    tr.querySelector(".dust").value = dust;
+  }
+
+  updateRowWeather(tr, manualWeather);
+  calculate();
+}
+
+function markManualWeather(checkbox){
+  checkbox.closest("tr").dataset.manualWeather = "manual";
+  updateWeatherLabel(checkbox.closest("tr"));
+}
+
+function syncPokemon(select){
+  const tr = select.closest("tr");
+  const pokemon = getPokemon(select.value);
+  tr.dataset.manualWeather = "auto";
+
+  if(pokemon){
+    tr.querySelector(".dust").value = pokemon.dust;
+    tr.querySelector(".types").textContent = pokemon.types.join(" / ");
+  }else{
+    tr.querySelector(".dust").value = 100;
+    tr.querySelector(".types").textContent = "Personalizado";
+  }
+
+  updateRowWeather(tr);
+  calculate();
+}
+
+function updateRowWeather(tr, forcedValue=null){
+  const select = tr.querySelector(".pokemonSelect");
+  const pokemon = getPokemon(select.value);
+  const checkbox = tr.querySelector(".weatherBoost");
+
+  if(forcedValue !== null){
+    checkbox.checked = !!forcedValue;
+  }else if(tr.dataset.manualWeather !== "manual"){
+    checkbox.checked = pokemon ? isBoostedByWeather(pokemon.types) : false;
+  }
+
+  updateWeatherLabel(tr);
+}
+
+function updateWeatherLabel(tr){
+  const checkbox = tr.querySelector(".weatherBoost");
+  const label = tr.querySelector(".weatherLabel");
+  label.textContent = checkbox.checked ? "+25%" : "Não";
+  label.className = checkbox.checked ? "weatherLabel boost" : "weatherLabel no-boost";
+}
+
+function syncWeatherBoosts(){
+  document.querySelectorAll("#rows tr").forEach(tr => {
+    if(tr.dataset.manualWeather !== "manual"){
+      updateRowWeather(tr);
+    }
+  });
+}
+
+function calculate(){
+  let totalQ = 0;
+  let totalWithoutPiece = 0;
+  let totalFinal = 0;
+
+  const usePiece = document.getElementById("piece").checked;
+  const eventMultiplier = getEventMultiplier();
+
+  document.querySelectorAll("#rows tr").forEach(tr => {
+    const q = Math.max(0, parseInt(tr.querySelector(".qty").value) || 0);
+    const d = Math.max(0, parseFloat(tr.querySelector(".dust").value) || 0);
+    const weatherFactor = tr.querySelector(".weatherBoost").checked ? 1.25 : 1;
+    const withoutPiece = q * d * weatherFactor * eventMultiplier;
+    const finalValue = withoutPiece * (usePiece ? 1.5 : 1);
+
+    tr.querySelector(".normal").textContent = money(withoutPiece);
+    tr.querySelector(".final").textContent = money(finalValue);
+
+    totalQ += q;
+    totalWithoutPiece += withoutPiece;
+    totalFinal += finalValue;
+  });
+
+  const average = totalQ > 0 ? totalFinal / totalQ : 0;
+
+  document.getElementById("totalCaptures").textContent = money(totalQ);
+  document.getElementById("totalNormal").textContent = money(totalWithoutPiece);
+  document.getElementById("totalFinal").textContent = money(totalFinal);
+  document.getElementById("avgDust").textContent = money(average);
+  document.getElementById("footQty").textContent = money(totalQ);
+  document.getElementById("footNormal").textContent = money(totalWithoutPiece);
+  document.getElementById("footFinal").textContent = money(totalFinal);
+
+  calculatePlanner();
+  saveState();
+}
+
+function selectXpBonus(checkbox, group){
+  if(checkbox.checked){
+    document.querySelectorAll(`[data-xp-group="${group}"]`).forEach(option => {
+      if(option !== checkbox) option.checked = false;
+    });
+  }
+  calculateXp();
+}
+
+function calculateXp(){
+  const captures = Math.max(0, parseInt(document.getElementById("xpCaptureCount").value) || 0);
+  const eventMultiplier = parseInt(document.getElementById("xpEventMultiplier").value) || 1;
+  const luckyEggMultiplier = document.getElementById("xpLuckyEgg").checked ? 2 : 1;
+  const multiplier = eventMultiplier * luckyEggMultiplier;
+  const captureBonus = [...document.querySelectorAll("[data-xp-bonus]:checked")]
+    .reduce((sum, checkbox) => sum + Number(checkbox.value), 0);
+  const xpPerCapture = 100 + captureBonus;
+  const oneTimeBonus = [...document.querySelectorAll("[data-xp-one-time]:checked")]
+    .reduce((sum, checkbox) => sum + Number(checkbox.dataset.xpOneTime), 0);
+  const totalXp = (captures * xpPerCapture + oneTimeBonus) * multiplier;
+
+  document.getElementById("xpBaseResult").textContent = money(100);
+  document.getElementById("xpPerCaptureResult").textContent = money(xpPerCapture * multiplier);
+  document.getElementById("xpTotalResult").textContent = money(totalXp);
+  document.getElementById("xpAppliedMultiplier").textContent = `${multiplier}×`;
+  calculateXpPlanner();
+}
+
+function calculateXpPlanner(){
+  const xpPerCapture = parseLocaleNumber(document.getElementById("xpPerCaptureResult").textContent);
+  const currentXp = Math.max(0, parseFloat(document.getElementById("currentXp").value) || 0);
+  const goalXp = Math.max(0, parseFloat(document.getElementById("goalXp").value) || 0);
+  const capturesPerHour = Math.max(0, parseFloat(document.getElementById("xpCapturesPerHour").value) || 0);
+  const sessionMinutes = Math.max(0, parseFloat(document.getElementById("xpSessionMinutes").value) || 0);
+  const xpPerHour = xpPerCapture * capturesPerHour;
+  const sessionCaptures = capturesPerHour * (sessionMinutes / 60);
+  const sessionXp = xpPerCapture * sessionCaptures;
+  const missingXp = Math.max(0, goalXp - currentXp);
+  const hoursToGoal = xpPerHour > 0 ? missingXp / xpPerHour : Infinity;
+  const capturesToGoal = xpPerCapture > 0 ? Math.ceil(missingXp / xpPerCapture) : 0;
+
+  document.getElementById("xpPerHour").textContent = money(xpPerHour);
+  document.getElementById("xpSessionCaptures").textContent = money(sessionCaptures);
+  document.getElementById("xpSessionTotal").textContent = money(sessionXp);
+  document.getElementById("xpMissing").textContent = money(missingXp);
+  document.getElementById("xpCapturesToGoal").textContent = money(capturesToGoal);
+  document.getElementById("xpTimeToGoal").textContent = missingXp === 0 ? "Meta atingida" : formatHours(hoursToGoal);
+  saveState();
+}
+
+function calculatePlanner(){
+  const totalQ = [...document.querySelectorAll("#rows tr")]
+    .reduce((sum,tr) => sum + Math.max(0, parseInt(tr.querySelector(".qty").value)||0), 0);
+
+  const totalFinal = [...document.querySelectorAll("#rows tr")]
+    .reduce((sum,tr) => sum + parseLocaleNumber(tr.querySelector(".final").textContent), 0);
+
+  const avg = totalQ > 0 ? totalFinal / totalQ : 0;
+  const cph = Math.max(0, parseFloat(document.getElementById("capturesPerHour").value) || 0);
+  const sessionMinutes = Math.max(0, parseFloat(document.getElementById("sessionMinutes").value) || 0);
+  const currentDust = Math.max(0, parseFloat(document.getElementById("currentDust").value) || 0);
+  const goalDust = Math.max(0, parseFloat(document.getElementById("goalDust").value) || 0);
+  const pieceDuration = Math.max(1, parseFloat(document.getElementById("pieceDuration").value) || 30);
+  const usePiece = document.getElementById("piece").checked;
+
+  const dustPerHour = avg * cph;
+  const sessionCaptures = cph * (sessionMinutes / 60);
+  const sessionDust = avg * sessionCaptures;
+  const missing = Math.max(0, goalDust - currentDust);
+  const hoursToGoal = dustPerHour > 0 ? missing / dustPerHour : Infinity;
+  const piecesToGoal = usePiece && Number.isFinite(hoursToGoal) && missing > 0
+    ? Math.ceil((hoursToGoal * 60) / pieceDuration)
+    : 0;
+
+  document.getElementById("dustPerHour").textContent = money(dustPerHour);
+  document.getElementById("sessionCaptures").textContent = money(sessionCaptures);
+  document.getElementById("sessionDust").textContent = money(sessionDust);
+  document.getElementById("dustMissing").textContent = money(missing);
+  document.getElementById("timeToGoal").textContent = missing === 0 ? "Meta atingida" : formatHours(hoursToGoal);
+  document.getElementById("piecesToGoal").textContent = money(piecesToGoal);
+
+  saveState();
+}
+
+function parseLocaleNumber(text){
+  return parseFloat(String(text).replace(/\./g,"").replace(",", ".")) || 0;
+}
+
+function formatHours(hours){
+  if(!Number.isFinite(hours)) return "—";
+  const totalMinutes = Math.ceil(hours * 60);
+  const h = Math.floor(totalMinutes / 60);
+  const m = totalMinutes % 60;
+  if(h === 0) return `${m} min`;
+  if(m === 0) return `${h}h`;
+  return `${h}h ${m}min`;
+}
+
+function clearRows(){
+  document.getElementById("rows").innerHTML = "";
+  calculate();
+}
+
+function serializeRows(){
+  return [...document.querySelectorAll("#rows tr")].map(tr => ({
+    name: tr.querySelector(".pokemonSelect").value,
+    qty: tr.querySelector(".qty").value,
+    dust: tr.querySelector(".dust").value,
+    weatherBoost: tr.querySelector(".weatherBoost").checked,
+    manualWeather: tr.dataset.manualWeather
+  }));
+}
+
+function saveState(){
+  try{
+    const state = {
+      weather: document.getElementById("weather").value,
+      eventMultiplier: document.getElementById("eventMultiplier").value,
+      customEventMultiplier: document.getElementById("customEventMultiplier").value,
+      piece: document.getElementById("piece").checked,
+      currentDust: document.getElementById("currentDust").value,
+      goalDust: document.getElementById("goalDust").value,
+      capturesPerHour: document.getElementById("capturesPerHour").value,
+      sessionMinutes: document.getElementById("sessionMinutes").value,
+      pieceDuration: document.getElementById("pieceDuration").value,
+      xpCaptureCount: document.getElementById("xpCaptureCount").value,
+      xpEventMultiplier: document.getElementById("xpEventMultiplier").value,
+      xpLuckyEgg: document.getElementById("xpLuckyEgg").checked,
+      xpBonuses: [...document.querySelectorAll("[data-xp-bonus]:checked")].map(checkbox => checkbox.dataset.xpBonus),
+      xpDailyBonus: document.getElementById("xpDailyBonus").checked,
+      xpWeekBonus: document.getElementById("xpWeekBonus").checked,
+      currentXp: document.getElementById("currentXp").value,
+      goalXp: document.getElementById("goalXp").value,
+      xpCapturesPerHour: document.getElementById("xpCapturesPerHour").value,
+      xpSessionMinutes: document.getElementById("xpSessionMinutes").value,
+      rows: serializeRows()
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }catch(e){}
+}
+
+function restoreState(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return false;
+    const state = JSON.parse(raw);
+
+    document.getElementById("weather").value = state.weather || "none";
+    document.getElementById("eventMultiplier").value = state.eventMultiplier || "1";
+    document.getElementById("customEventMultiplier").value = state.customEventMultiplier || "1";
+    document.getElementById("piece").checked = state.piece !== false;
+    document.getElementById("currentDust").value = state.currentDust ?? "0";
+    document.getElementById("goalDust").value = state.goalDust ?? "1000000";
+    document.getElementById("capturesPerHour").value = state.capturesPerHour ?? "250";
+    document.getElementById("sessionMinutes").value = state.sessionMinutes ?? "60";
+    document.getElementById("pieceDuration").value = state.pieceDuration ?? "30";
+    document.getElementById("xpCaptureCount").value = state.xpCaptureCount ?? "1";
+    document.getElementById("xpEventMultiplier").value = state.xpEventMultiplier || "1";
+    document.getElementById("xpLuckyEgg").checked = state.xpLuckyEgg === true;
+    document.querySelectorAll("[data-xp-bonus]").forEach(checkbox => {
+      checkbox.checked = (state.xpBonuses || []).includes(checkbox.dataset.xpBonus);
+    });
+    document.getElementById("xpDailyBonus").checked = state.xpDailyBonus === true;
+    document.getElementById("xpWeekBonus").checked = state.xpWeekBonus === true;
+    document.getElementById("currentXp").value = state.currentXp ?? "0";
+    document.getElementById("goalXp").value = state.goalXp ?? "1000000";
+    document.getElementById("xpCapturesPerHour").value = state.xpCapturesPerHour ?? "250";
+    document.getElementById("xpSessionMinutes").value = state.xpSessionMinutes ?? "60";
+
+    document.getElementById("rows").innerHTML = "";
+    (state.rows || []).forEach(row => {
+      addRow(row.name, row.qty, row.dust, row.weatherBoost);
+      const tr = document.querySelector("#rows tr:last-child");
+      if(tr) tr.dataset.manualWeather = row.manualWeather || "auto";
+    });
+
+    toggleCustomEvent();
+    syncWeatherBoosts();
+    calculate();
+    return true;
+  }catch(e){
+    return false;
+  }
+}
+
+if(!restoreState()){
+  addRow("Combee",10,750);
+  addRow("Trubbish",5,750);
+  addRow("",20,100);
+}
+calculateXp();
 </script>
 </body>
 </html>
